@@ -53,8 +53,11 @@ const App = () => {
                 .then(returnedPerson => {
                     setPersons(persons.concat(returnedPerson))
                     clearFields()
+                    setNotificationMessage(`${newName} lisätty`, "message")
                 })
-            setNotificationMessage(`${newName} lisätty`, "message")
+                .catch(error => {
+                    setNotificationMessage(`${error.response.data.error}`, "error")
+                })
         }
     }
 
